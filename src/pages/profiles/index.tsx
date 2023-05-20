@@ -5,27 +5,27 @@ import Table, { Rows } from '@/components/table/table'
 import LoadingWithDots from '@/components/loading/loadingWithDots'
 import { useRouter } from 'next/router'
 
-export type UserProps = {
+export type ProfileProps = {
   id: number
-  name: string
-  email: string
+  bio: string
+  userId: number
 }
 
-export type Users = {
-  users: UserProps[]
+export type Profiles = {
+  profiles: ProfileProps[]
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const users = await prisma.user.findMany({
-    // Add any condition you want for fetching users
+  const profiles = await prisma.profile.findMany({
+    // Add any condition you want for fetching profiles
   })
 
   return {
-    props: { users },
+    props: { profiles },
   }
 }
-const UsersPage = (props: Users) => {
-  const { users } = props
+const ProfilesPage = (props: Profiles) => {
+  const { profiles } = props
   const [loading, setLoading] = useState<boolean>(true)
   const router = useRouter()
   const handleBackToAdmin = () => {
@@ -34,12 +34,12 @@ const UsersPage = (props: Users) => {
 
   const headers = [
     { key: 'id', label: 'Id' },
-    { key: 'name', label: 'Name' },
-    { key: 'email', label: 'E-Mail' },
+    { key: 'bio', label: 'Bio' },
+    { key: 'userId', label: 'User Id' },
   ]
 
-  const rows: Rows[] = users.map((user) => {
-    return { id: user.id, name: user.name, email: user.email }
+  const rows: Rows[] = profiles.map((profile) => {
+    return { id: profile.id, bio: profile.bio, userId: profile.userId }
   })
 
   useEffect(() => {
@@ -61,11 +61,11 @@ const UsersPage = (props: Users) => {
         }}
       >
         <button onClick={handleBackToAdmin}>Go Back</button>
-        <h1>Users Table:</h1>
-        {users.length !== 0 ? <Table headers={headers} rows={rows} /> : <div>Nothing to see here.</div>}
+        <h1>Profiles Table:</h1>
+        {profiles.length !== 0 ? <Table headers={headers} rows={rows} /> : <div>Nothing to see here.</div>}
       </div>
     </>
   )
 }
 
-export default UsersPage
+export default ProfilesPage

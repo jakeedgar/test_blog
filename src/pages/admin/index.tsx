@@ -1,6 +1,5 @@
-import Table from '@/components/table/table'
 import { NextPage } from 'next'
-import { useMemo } from 'react'
+import { useRouter } from 'next/router'
 
 type DataObject = {
   title: string
@@ -8,23 +7,10 @@ type DataObject = {
 }
 
 const AdminPage: NextPage = () => {
-  const headers = [
-    { key: 'name', label: 'Name' },
-    { key: 'age', label: 'Age' },
-    { key: 'country', label: 'Country' },
-  ]
-
-  const userHeaders = [
-    { key: 'name', label: 'Name' },
-    { key: 'email', label: 'E-Mail' },
-  ]
-
-  const rows = [
-    { name: 'John', age: 25, country: 'USA' },
-    { name: 'Alice', age: 32, country: 'Canada' },
-    { name: 'Bob', age: 41, country: 'UK' },
-  ]
-
+  const router = useRouter()
+  const handleBack = () => {
+    router.push('/')
+  }
   const data: DataObject[] = [
     {
       title: 'Users',
@@ -41,8 +27,13 @@ const AdminPage: NextPage = () => {
   ]
 
   return (
-    <div>
-      This is the admin page
+    <div
+      style={{
+        margin: '2rem',
+      }}
+    >
+      <button onClick={handleBack}>Go Home</button>
+      <h1>This is the admin page</h1>
       <div>
         <br />
         {data.map((item, index) => (
@@ -53,6 +44,7 @@ const AdminPage: NextPage = () => {
               flexDirection: 'row',
               flex: 1,
               width: '360px',
+              fontSize: '1.25em',
             }}
           >
             <div>
@@ -60,9 +52,6 @@ const AdminPage: NextPage = () => {
             </div>
           </div>
         ))}
-        <div>
-          <Table headers={headers} rows={rows} />
-        </div>
       </div>
     </div>
   )

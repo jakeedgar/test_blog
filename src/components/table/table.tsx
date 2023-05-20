@@ -5,6 +5,7 @@ import styled from 'styled-components'
 const TableContainer = styled.table`
   width: 100%;
   border-collapse: collapse;
+  border: 1px solid #ddd;
 `
 
 const TableHeader = styled.th`
@@ -24,16 +25,16 @@ const TableCell = styled.td`
 `
 
 // Types
-type Headers = {
+export type Headers = {
   key: string
   label: string
 }
 
-type Rows = {
+export type Rows = {
   [key: string]: string | number
 }
 
-type TableProps = {
+export type TableProps = {
   headers: Headers[]
   rows: Rows[]
 }
