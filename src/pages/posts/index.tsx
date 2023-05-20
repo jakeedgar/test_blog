@@ -1,7 +1,7 @@
 import prisma from '@/lib/prisma'
 import { GetServerSideProps } from 'next/types'
 import React, { useEffect, useState } from 'react'
-import Table, { Rows, Headers } from '@/components/table/table'
+import Table, { Rows, Headers } from '@/components/table/Table'
 import LoadingWithDots from '@/components/loading/loadingWithDots'
 import { useRouter } from 'next/router'
 

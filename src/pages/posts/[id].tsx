@@ -1,9 +1,8 @@
 import React from 'react'
 import { GetServerSideProps } from 'next'
 import ReactMarkdown from 'react-markdown'
-import Layout from '../../components/Layout'
 import Router from 'next/router'
-import { PostProps } from '../../components/post/PostContainer'
+import { PostProps } from '../../components/post/Post'
 import prisma from '../../lib/prisma'
 import styles from '@/styles/Post.module.css'
 
@@ -28,21 +27,19 @@ const Post: React.FC<PostProps> = (props) => {
   }
 
   return (
-    <Layout>
-      <div>
-        <h2>{title}</h2>
-        <p>By {props?.author?.name || 'Unknown author'}</p>
-        <ReactMarkdown>{props.content}</ReactMarkdown>
-        {!props.published && (
-          <button className={styles.button} onClick={() => publish(props.id)}>
-            Publish
-          </button>
-        )}
-        <button className={styles.button} onClick={() => destroy(props.id)}>
-          Delete
+    <div>
+      <h2>{title}</h2>
+      <p>By {props?.author?.name || 'Unknown author'}</p>
+      <ReactMarkdown>{props.content}</ReactMarkdown>
+      {!props.published && (
+        <button className={styles.button} onClick={() => publish(props.id)}>
+          Publish
         </button>
-      </div>
-    </Layout>
+      )}
+      <button className={styles.button} onClick={() => destroy(props.id)}>
+        Delete
+      </button>
+    </div>
   )
 }
 

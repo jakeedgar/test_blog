@@ -4,6 +4,9 @@
 
 .left a[data-active='true'] {
   color: gray;
+  border: 1px solid gray;
+  padding: 0.5rem 1rem;
+  border-radius: 3px;
 }
 
 .right {

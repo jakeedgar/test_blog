@@ -1,6 +1,10 @@
 import React, { ReactNode } from 'react'
-import Header from './Header'
-import styles from '@/components/Layout.module.css'
+import Header from '../header/Header'
+import styled from 'styled-components'
+
+const Container = styled.div`
+  padding: 2rem;
+`
 
 type Props = {
   children: ReactNode
@@ -9,7 +13,7 @@ type Props = {
 const Layout: React.FC<Props> = (props) => (
   <div>
     <Header />
-    <div className={styles.layout}>{props.children}</div>
+    <Container>{props.children}</Container>
   </div>
 )
 
