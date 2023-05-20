@@ -1,7 +1,8 @@
 import React from 'react'
 import Router from 'next/router'
 import ReactMarkdown from 'react-markdown'
-import styles from '@/components/Post.module.css'
+import { PostContainer } from './PostContainer'
+import { capitalizeFirstLetter } from '@/utils'
 
 export type PostProps = {
   id: number
@@ -16,11 +17,11 @@ export type PostProps = {
 const Post: React.FC<{ post: PostProps }> = ({ post }) => {
   const authorName = post.author ? post.author.name : 'Unknown author'
   return (
-    <div className={styles.post} onClick={() => Router.push('/posts/[id]', `/posts/${post.id}`)}>
+    <PostContainer onClick={() => Router.push('/posts/[id]', `/posts/${post.id}`)}>
       <h2>{post.title}</h2>
-      <small>By {authorName}</small>
+      <small>By {capitalizeFirstLetter(authorName)}</small>
       <ReactMarkdown>{post.content}</ReactMarkdown>
-    </div>
+    </PostContainer>
   )
 }
 

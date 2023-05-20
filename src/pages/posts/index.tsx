@@ -33,7 +33,9 @@ const PostsPage = (props: Posts) => {
   const { posts } = props
   const [loading, setLoading] = useState<boolean>(true)
   const router = useRouter()
-
+  const handleBackToAdmin = () => {
+    router.push('/admin')
+  }
   const headers: Headers[] = [
     { key: 'id', label: 'Id' },
     { key: 'title', label: 'Title' },
@@ -65,10 +67,6 @@ const PostsPage = (props: Posts) => {
 
   if (loading) {
     return <LoadingWithDots />
-  }
-
-  const handleBackToAdmin = () => {
-    router.push('/admin')
   }
 
   return (
