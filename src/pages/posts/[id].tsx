@@ -5,6 +5,7 @@ import Router from 'next/router'
 import { PostProps } from '../../components/post/Post'
 import prisma from '../../lib/prisma'
 import styles from '@/styles/Post.module.css'
+import { Card } from '@/components/card'
 
 async function publish(id: number): Promise<void> {
   await fetch(`/api/publish/${id}`, {
@@ -27,7 +28,7 @@ const Post: React.FC<PostProps> = (props) => {
   }
 
   return (
-    <div>
+    <Card width='100%'>
       <h2>{title}</h2>
       <p>By {props?.author?.name || 'Unknown author'}</p>
       <ReactMarkdown>{props.content}</ReactMarkdown>
@@ -39,7 +40,7 @@ const Post: React.FC<PostProps> = (props) => {
       <button className={styles.button} onClick={() => destroy(props.id)}>
         Delete
       </button>
-    </div>
+    </Card>
   )
 }
 

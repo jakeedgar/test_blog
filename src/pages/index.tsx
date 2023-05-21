@@ -3,6 +3,7 @@ import { GetServerSideProps } from 'next'
 import Post, { PostProps } from '../components/post/Post'
 import prisma from '../lib/prisma'
 import styles from '@/styles/Blog.module.css'
+import Grid from '@/components/grid/Grid'
 
 export type FeedProps = {
   feed: PostProps[]
@@ -21,13 +22,14 @@ const Blog: React.FC<FeedProps> = (props: FeedProps) => {
   const { feed } = props
   return (
     <div>
-      <h1>My Blog</h1>
       <main>
-        {feed.map((post) => (
-          <div key={post.id} className={styles.post}>
-            <Post post={post} />
-          </div>
-        ))}
+        <Grid columns={3} gap='20px'>
+          {feed.map((post) => (
+            <div key={post.id}>
+              <Post post={post} />
+            </div>
+          ))}
+        </Grid>
       </main>
     </div>
   )

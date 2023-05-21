@@ -4,16 +4,16 @@ import prisma from '../../../lib/prisma'
 // POST /api/user
 // Required fields in body: name, email
 export default async function handle(req: NextApiRequest, res: NextApiResponse) {
-  const { name, email } = req.body
+  const { bio, userId } = req.body
 
   // Validation
-  if (!name || !email) {
+  if (typeof bio !== 'string' || !userId) {
     return res.status(400).json({ error: 'Name and email are both required.' })
   }
 
   try {
     // Use a service for database interaction
-    const result = await createUser(name, email)
+    const result = await createProfile(bio, userId)
     return res.status(201).json(result)
   } catch (error) {
     // Log the error for debugging purposes
@@ -30,11 +30,11 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
 }
 
 // This service could be moved to another file
-async function createUser(name: string, email: string) {
-  return await prisma.user.create({
+async function createProfile(bio: string, userId: number) {
+  return await prisma.profile.create({
     data: {
-      name,
-      email,
+      bio,
+      userId,
     },
   })
 }

@@ -1,21 +1,20 @@
-import { Html, Head, Main, NextScript } from 'next/document'
+// import { Html, Head, Main, NextScript } from 'next/document'
 
-export default function Document() {
-  return (
-    <Html lang='en'>
-      <Head />
-      <body>
-        <Main />
-        <NextScript />
-      </body>
-    </Html>
-  )
-}
+// export default function Document() {
+//   return (
+//     <Html lang='en'>
+//       <Head />
+//       <body>
+//         <Main />
+//         <NextScript />
+//       </body>
+//     </Html>
+//   )
+// }
 
 // TODO: Update later to the following:
 
-/****
- * import Document, { DocumentContext, DocumentInitialProps, Html, Head, Main, NextScript } from 'next/document'
+import Document, { DocumentContext, DocumentInitialProps, Html, Head, Main, NextScript } from 'next/document'
 import { ServerStyleSheet } from 'styled-components'
 export default class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext): Promise<DocumentInitialProps> {
@@ -40,15 +39,14 @@ export default class MyDocument extends Document {
       sheet.seal()
     }
   }
-  render() {
-    return (
-      <Html>
-        <body>
-          <Main />
-          <NextScript />
-        </body>
-      </Html>
-    )
-  }
+  // render() {
+  //   return (
+  //     <Html>
+  //       <body>
+  //         <Main />
+  //         <NextScript />
+  //       </body>
+  //     </Html>
+  //   )
+  // }
 }
- */
