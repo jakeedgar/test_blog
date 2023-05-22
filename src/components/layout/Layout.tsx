@@ -31,6 +31,8 @@ const Container = styled.div`
   }
 `
 
+const items = ['Blog', 'Drafts', 'Admin', 'Signup', 'Create']
+
 type Props = {
   children: ReactNode
 }
@@ -38,7 +40,7 @@ type Props = {
 const Layout: React.FC<Props> = (props) => {
   return (
     <Container>
-      <Navbar />
+      <Navbar items={items} />
       {props.children}
     </Container>
   )

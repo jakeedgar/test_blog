@@ -4,6 +4,14 @@ import Post, { PostProps } from '../components/post/Post'
 import prisma from '../lib/prisma'
 import styles from '@/styles/Blog.module.css'
 import Grid from '@/components/grid/Grid'
+import styled from 'styled-components'
+
+import ResponsiveImage from '@/components/background_image'
+
+const Container = styled.div`
+  align-items: center;
+  justify-content: center;
+`
 
 export type FeedProps = {
   feed: PostProps[]
@@ -21,8 +29,9 @@ export const getServerSideProps: GetServerSideProps = async () => {
 const Blog: React.FC<FeedProps> = (props: FeedProps) => {
   const { feed } = props
   return (
-    <div>
+    <Container>
       <main>
+        <ResponsiveImage />
         <Grid columns={3} gap='20px'>
           {feed.map((post) => (
             <div key={post.id}>
@@ -31,7 +40,7 @@ const Blog: React.FC<FeedProps> = (props: FeedProps) => {
           ))}
         </Grid>
       </main>
-    </div>
+    </Container>
   )
 }
 

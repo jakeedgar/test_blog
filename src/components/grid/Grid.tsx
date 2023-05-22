@@ -10,15 +10,25 @@ interface GridProps {
 const GridContainer = styled.div<GridProps>`
   display: flex;
   flex-wrap: wrap;
-  margin: -${(props: GridProps) => props.gap};
+  margin: -${(p: GridProps) => p.gap};
+  justify-content: ${(p: GridProps) => (p.columns > 1 ? 'flex-start' : 'center')};
+
+  @media (max-width: 768px) {
+    justify-content: center;
+  }
+
+  @media (max-width: 576px) {
+    justify-content: center;
+  }
 `
 
 const GridItem = styled.div<GridProps>`
-  flex: 0 0 calc(100% / ${(props: GridProps) => props.columns});
-  padding: ${(props: GridProps) => props.gap};
+  flex: 0 0 calc(100% / ${(p: GridProps) => p.columns});
+  padding: ${(p: GridProps) => p.gap};
 `
 
-const Grid: React.FC<GridProps> = ({ columns, gap = '0px', children }) => {
+const Grid: React.FC<GridProps> = (props: GridProps) => {
+  const { columns, gap = '0px', children } = props
   return (
     <GridContainer columns={columns} gap={gap}>
       {React.Children.map(children, (child) => (
