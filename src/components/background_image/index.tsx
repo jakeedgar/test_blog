@@ -11,11 +11,10 @@ const ResponsiveImage: React.FC = () => {
   return (
     <ImageContainer>
       <Image
-        width={1050}
+        width={1075}
         src={default_image}
         alt='Responsive Image'
         style={{
-          margin: 'auto',
           objectFit: 'cover',
         }}
       />
